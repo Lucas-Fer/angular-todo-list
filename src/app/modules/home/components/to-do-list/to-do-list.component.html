@@ -1,0 +1,16 @@
+<section>
+  <ul>
+    <li *ngFor="let item of taskList; let i = index">
+      <input type="checkbox" [(ngModel)]="item.checked">
+      <input type="text" (keyup)="validateTask(item.task, i)" [(ngModel)]="item.task"
+        [ngClass]="{'checked': item.checked}">
+
+      <button (click)="removeTask(i)"><img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAeFBMVEX///8BAAIAAAD6+voPDg/r6+vi4uLa2trd3d1TU1RbW1vu7u7V1dXz8/NmZWasrKzIyMmysrJ/f38VFBU/Pj+UlJRubW4fHyAnJyjR0dFeXl9ISEgtLS26urp+fn41NDWMjI0bGxuenp5NTU7Dw8O4uLhramt2dXa0T43KAAAEDklEQVR4nO3d61biMBSGYdwFBDnJsSCKKCj3f4fTiM5QtG0acsJ5v997hTyGxqYNK42Gy7RGw+ep3BRHps/DUctpH1ymPxSVEmBGVBn2Q3fVLNsq3YlyHrqzBkl2mr6jsZuE7nDtdGsAFfEudIfrZlPH92GchO5yvfRrjeBxFG9Dd7pWZnWBGXEdutN1Un8Ir20QJ/WBGXEbuts10jUSxjOdDgaDXmnaTSPhS7u82exzPeD688VMqmMA/LyDK89sMe+7ZN4v0ksEl+bzs9PFvSPfOA1mO3emYwe+fRoD7xhl3Fv29YbR8I7Jllw9m8DVS2RARXyxeDmOovOpiIxsAedRAhXR0sL5NVKgIr7aAL5FC1REC/82OhEDrSxIkseYgRlxeekDnm3UQ6gG8cKnH7eRAy//nt7FDrx0WRn/EKpBvOSJ+TB+YEZ8MAcmVzCEahDN18SjawBmRPP7U6MHSv4jO1PgoPTVXzyRqenXdHUVl6G6EFeGwvF1ADOi6f230ZPrEDG+c7uK/4YqMjQUPmg8oo0jpv/z76R5HTG+NU2uJ4ZCQgghltOKLdaFoW9bvgWhgTD0/XUuCBEiDB+ECBGGD0KECMMHIUKE4eNZeFx0a/VLt7KqTa9CkeZisllr9Fxkupgc9Cor2vQplHT/8WKktaj8Qez0uP1co/KrzUNRpUfhydvJp9KOi1HlvqDSnzD3m7px6cXa1a6cnVQWbOD1JhRpnxY9lE0NucqSLYFnlT+/a/cnfM8Vlfzu8Oxd+6pEqNOmP+FbrmiwLBa+6bT3UZnfxPXzLmVfwm87H4v3iZ3v6nkurjxrcx1WeLZBt/jyko7m3+LsMiyoRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRIgQIUKECBEiRBiL8Lef2fX7z137H87O+/XnH+bPmyw/mXKnXRnTGZbZRz0kFZ3526ehduW/NotOLPUplMenj4J29Qmxy71u5WebUZwle6MOJr7bvC+1TvmV7kSnUrXZ3SxKKh0Ib8qmBvtnOldVSmpdONPpl7/k5i07mUQm3FoXjiITjq0LW1qXj6+I9KwLG7uohN3qDtfOPCrhqwNhO6Kv6bc1pJ0cIhJuXAAjmmuczDMq22iEczfARlK8gvcaeUyqO2uWOCYbuXEyzRxzHwFR5N4dUN27hSaKg/u1XPaBiY5HUKW9DGjMFv8Or8GvJBO9NawLn2ydzaK5qOcs3pHqIw8tLz6Vznam/TzCDk5kPe9Ud8xmWqPNLG36IEozXW9GxsP3B1x9n026g31TAAAAAElFTkSuQmCC"
+          width="10px" alt="icon-trash"></button>
+    </li>
+  </ul>
+</section>
+
+<app-to-do-input-add-itens (emitNewTask)="setNewTask($event)"></app-to-do-input-add-itens>
+<app-to-do-button-delete-all *ngIf="taskList.length" (click)="deleteAllTasks()"></app-to-do-button-delete-all>
